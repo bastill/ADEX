@@ -1,0 +1,67 @@
+{% extends 'account/base.html' %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+{% block title %} Adex - Login {% endblock title %}
+
+{% block content %}
+
+<div class="authentication-form mx-auto">
+<div class="logo-centered">
+<a href="db-default.html">
+<img src="{% static 'assets/img/logo.png' %}" alt="logo">
+</a>
+</div>
+<h3>Sign In To Adex</h3>
+{% if form.errors %}
+    <p style='color:red;'>Your username and password didn't match,Please try again.</p> <br/>
+{% endif %}
+ 
+<form method="POST" action="{% url 'account:login'  %}">
+
+<div class="group material-input">
+
+{% render_field form.username %}
+<span class="highlight"></span>
+<span class="bar"></span>
+<label>Email</label>
+</div>
+
+{% csrf_token %} 
+
+<div class="group material-input">
+{% render_field form.password %}
+<span class="highlight"></span>
+<span class="bar"></span>
+<label>Password</label>
+</div>
+
+<div class="row">
+<div class="col text-left">
+<div class="styled-checkbox">
+<input type="checkbox" name="checkbox" id="remeber">
+<label for="remeber">Remember me</label>
+</div>
+</div>
+<div class="col text-right">
+<a href="{% url 'account:password_reset' %}">Forgot Password ?</a>
+</div>
+</div>
+<div class="sign-btn text-center">
+<input type="submit"  value="Sign in" class="btn btn-lg btn-gradient-01">
+
+</div>
+<div class="register">
+Don't have an account?
+<br>
+<a href="{% url 'account:signup' %}">Create an account</a>
+</div>
+</div>
+
+</div>
+
+
+
+</form>
+
+
+{% endblock content %}

@@ -1,0 +1,17 @@
+{% extends 'account/base.html' %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+{% block title %} Adex - Login {% endblock title %}
+
+{% block content %}
+
+<div class="authentication-form mx-auto">
+<div class="logo-centered">
+<a href="db-default.html">
+<img src="{% static 'assets/img/logo.png' %}" alt="logo">
+</a>
+</div>
+<h3>Session Terminated</h3>
+<p>You have been successfully logged out. You can <a href="{% url 'account:login' %}">log-in again</a>.</p>
+
+{% endblock content %}

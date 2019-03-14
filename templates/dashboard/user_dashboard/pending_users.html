@@ -1,0 +1,92 @@
+{% extends "dashboard/base.html" %}
+{% block title %} Dashboard|Pending{% endblock title %}
+{% load staticfiles %}
+
+{% block nav %}
+
+     {% if request.user.is_staff %}        
+                        <ul class="horizontal-nav-menu">
+                            
+                            <li class="dropdown">
+                                <a  class="{% if section == 'pending' %} active  {% endif %}" href="{% url 'dashboard:pending_users'  %}" data-offset="10" data-display="static" aria-expanded="false">
+                                    <i class="material-icons">accessibility_new</i>
+                                    <span>Pending Users</span>
+                                    
+                                </a>
+                            
+                            </li>
+                            <li class="dropdown">
+                                <a class="{% if section == 'approved' %} active  {% endif %}" href="{% url 'dashboard:approved_users'  %}"  data-offset="10" data-display="static" aria-expanded="false">
+                                    <i class="material-icons">done_all</i>
+                                    <span>Approved Users</span>
+                                    
+                                </a>
+                            
+                            </li>
+                            <li class="dropdown">
+                                <a class="{% if section == 'users' %} active  {% endif %}" href="{% url  'dashboard:all_users'  %}"  data-offset="10" data-display="static" aria-expanded="false">
+                                    <i class="material-icons">account_circle</i>
+                                    <span>All Users</span>
+                                    
+                                </a>
+                            
+                            </li>
+                        
+                            
+                        </ul>        
+
+                    {% else %}
+                        <ul class="horizontal-nav-menu">
+                    
+                            <li class="dropdown">
+                                <a class="{% if section == 'post-task' %} active  {% endif %}" href="{% url 'dashboard:post_task'  %}" data-offset="10" data-display="static" aria-expanded="false">
+                                    <i class="material-icons">book</i>
+                                    <span>Post Task</span>
+                                    
+                                </a>
+                            
+                            </li>
+                        
+                        </ul>
+
+                    {% endif %} 
+
+
+{% endblock nav %}
+
+
+{% block content %}
+
+   <div class="container fiori-container">
+                    <div class="main-card mb-3 card mt-4">
+                        <div class="card-body">
+                            <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                            <div class="row"><div class="col-sm-12"><table style="width: 100%;" id="example" class="table table-hover table-striped table-bordered dataTable dtr-inline" role="grid" aria-describedby="example_info">
+                                <thead>
+                                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 177.2px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">First Name</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 270.2px;" aria-label="Position: activate to sort column ascending">Last Name</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 129.2px;" aria-label="Office: activate to sort column ascending">Email</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 63.2px;" aria-label="">UserName</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 125.2px;" aria-label="Start date: activate to sort column ascending">Phone Number</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 98.2px;" aria-label="">Date </th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 98.2px;" aria-label="">Status</th></tr>
+                                </thead>
+                                <tbody>       
+                                {% for users in pending_users %}
+                                <tr role="row" class="odd">
+                                    <td tabindex="0" class="sorting_1">Nill</td>
+                                    <td>Nill</td>
+                                    <td>{{pending_users.email}}</td>
+                                    <td>{{pending_users.username}}</td>
+                                    <td>{{pending_users.phone_num}}</td>
+                                    <td>{{pending_users.date_created}}</td>
+                                    <td>Pending</td>
+                                    <td><button>Activate </button></td>
+                                </tr>
+                                {% endfor %}
+                                </tr></tbody>
+                                <tfoot>
+                                <tr><th rowspan="1" colspan="1">First Name</th><th rowspan="1" colspan="1">Last Name</th><th rowspan="1" colspan="1">Email</th><th rowspan="1" colspan="1">Phone Number</th><th rowspan="1" colspan="1">Date Created</th><th rowspan="1" colspan="1"></th></tr>
+                                </tfoot>
+                            </table></div></div>    
+                        </div>
+                    </div>
+                </div>
+
+
+
+{% endblock content %}
