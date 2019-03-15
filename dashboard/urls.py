@@ -9,3 +9,5 @@ urlpatterns = [
     url(r'^all-users/$', views.approved_users, name='all_users'),
     url(r'^task/', include('task.urls')),
 ]
+
+#just testing
