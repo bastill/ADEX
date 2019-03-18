@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-
+from django.contrib.auth.models import User
 
 class ApprovedManager(models.Manager):
     def get_queryset(self):
@@ -13,26 +13,28 @@ class PendingManager(models.Manager):
         return super(PendingManager, self).get_queryset().filter(status=False)
 
 
-
-
-class UserActivation(models.Model):
+class UserProfile(models.Model):
     objects = models.Manager()
     pending = PendingManager()
-    approve = ApprovedManager()
+    approved = ApprovedManager()
 
-    username    =  models.CharField(max_length=50, blank=False, unique=True)
-    email       =  models.EmailField(max_length=50, blank=False, unique=True)
-    phone_num   =  models.CharField(max_length=13, blank=False, unique=True)
-    t_and_c     =  models.BooleanField(default=False)
-    password    =  models.CharField(max_length=30)
-    password_2  =  models.CharField(max_length=30)
-    date_created = models.DateTimeField(timezone.now())
-    status     =   models.BooleanField(default=False)
-
+    user =  models.OneToOneField(User, related_name = 'userprofile')
+    phone_number = models.CharField(max_length=14, blank=False)
+    date_activated = models.DateTimeField(null=True)
+    t_and_c = models.BooleanField(default=False)
+    status = models.BooleanField(default=False)
 
     def __str__(self):
-        return "{} and {}".format(self.username, self.email)
+        return "{} phone number {}".format(self.user, self.phone_number)
 
 
     class Meta:
-        ordering = ('-date_created',)
+        ordering = ('-date_activated',)
+
+
+    def is_static_active(self):
+        if self.status == True :
+            return True
+
+        else:
+            return False

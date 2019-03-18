@@ -149,5 +149,7 @@ REST_FRAMEWORK = {
 
     'DEFAULT_MODEL_SERIALIZER_CLASS' : [
         'rest_framework.serializers.ModelSerializer'
-    ]
+    ],
+
+    
 }

@@ -63,18 +63,17 @@
                             <div class="row"><div class="col-sm-12">
                             <table style="width: 100%;" id="example" class="table table-hover table-striped table-bordered dataTable dtr-inline" role="grid" aria-describedby="example_info">
                                 <thead>
-                                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 177.2px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">First Name</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 270.2px;" aria-label="Position: activate to sort column ascending">Last Name</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 129.2px;" aria-label="Office: activate to sort column ascending">Email</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 63.2px;" aria-label="">UserName</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 125.2px;" aria-label="Start date: activate to sort column ascending">Phone Number</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 98.2px;" aria-label="">Date </th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 98.2px;" aria-label="">Status</th></tr>
+                                <tr role="row"><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 129.2px;" aria-label="Office: activate to sort column ascending">Email</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 63.2px;" aria-label="">UserName</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 125.2px;" aria-label="Start date: activate to sort column ascending">Phone Number</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 98.2px;" aria-label="">Date Activated </th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 98.2px;" aria-label="">Status</th></tr>
                                 </thead>
                                 <tbody>       
                                     {% for users in all_users %}
                                         <tr role="row" class="odd">
                                         
-                                            <td tabindex="0" class="sorting_1">Nill</td>
-                                            <td>Nill</td>
-                                            <td>{{users.email}}</td>
-                                            <td>{{users.username}}</td>
-                                            <td>{{users.phone_num}}</td>
-                                            <td>{{users.date_created}}</td>
+                                            <td>{{users.user.email}}</td>
+                                            <td>{{users.user.username}}</td>
+                                            <td>{{users.phone_number}}</td>
+                                            <td>{{users.date_activated}}</td>
+                                            <td>{% if users.status == True %} Approved {% else %} Pending {% endif %}</td>
                                         
                                         </tr>
                                     {% endfor %}

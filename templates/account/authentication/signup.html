@@ -9,28 +9,35 @@
 
 </a>
 </div>
-    {{forms.errors}}
+
+
+<span style='color:red'>{% if form.t_and_c.errors %} Please accept the terms and conditions to proceed {% endif %}</span>
 <h3>Create An Account</h3>
-<p style="color:red"> {{ form.errors }} </p>
+
 <form method="POST" action="{% url 'account:signup'  %}">
+
 <div class="group material-input">
-{% render_field form.email %}
-<span class="highlight"></span>
-<span class="bar"></span>
-<label>Email</label>
+    {% render_field form.email %}
+    <span class="highlight"></span>
+    <span class="bar"></span>
+   <span style='color:red'> {{form.email.errors}} </span>
+    <label>Email</label>
 </div>
 
 <div class="group material-input">
 {% render_field form.username %}
 <span class="highlight"></span>
 <span class="bar"></span>
+ <span style="color:red;"> {{form.username.errors}} </span>
 <label>UserName</label>
+
 </div>
 
 <div class="group material-input">
-{% render_field form.phone_num %}
+{% render_field form.phone_number %}
 <span class="highlight"></span>
 <span class="bar"></span>
+<span style='color:red'> {{form.phone_number.errors}} </span>
 <label>Phone Number</label>
 </div>
 
@@ -38,6 +45,7 @@
 {% render_field form.password %}
 <span class="highlight"></span>
 <span class="bar"></span>
+<span style='color:red'> {{form.password.errors}} </span>
 <label>Password</label>
 </div>
 
@@ -45,11 +53,14 @@
 
 
 <div class="group material-input">
-{% render_field form.password_2 %}
-<span class="highlight"></span>
-<span class="bar"></span>
-<label>Confirm Password</label>
+    {% render_field form.password2 %}
+    <span class="highlight"></span>
+    <span class="bar"></span>
+   <span style='color:red'> {{form.password2.errors}} </span>
+    <label>Confirm Password</label>
 </div>
+
+
 {% csrf_token %}
 <div class="row">
 <div class="col text-left">
